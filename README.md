@@ -308,7 +308,7 @@ deep_sre_agent/
 
 ---
 
-## �🤝 贡献指南
+## 🤝 贡献指南
 
 1. Fork 项目
 2. 创建特性分支 (`git checkout -b feature/amazing-feature`)
@@ -318,7 +318,7 @@ deep_sre_agent/
 
 ## 📄 许可证
 
-本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
+本项目基于 MIT 协议开源 - 详情请参阅 [LICENSE](LICENSE) 文件。
 
 ## 🙏 致谢
 
