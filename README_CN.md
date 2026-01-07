@@ -11,7 +11,10 @@ Agent 能够像人类 SRE 工程师一样，通过自然语言主动巡检系统
 
 ## 演示
 
-<video src="packages/demo.mp4" controls="controls" style="max-width: 100%;">
+<video src="packages/demo01.mp4" controls="controls" style="max-width: 100%;">
+  您的浏览器不支持 video 标签。
+</video>
+<video src="packages/demo02.mp4" controls="controls" style="max-width: 100%;">
   您的浏览器不支持 video 标签。
 </video>
 

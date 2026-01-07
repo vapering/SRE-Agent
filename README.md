@@ -12,7 +12,10 @@ The Agent can act like a human SRE engineer, proactively inspecting the system, 
 
 ## 🎥 Demo
 
-<video src="packages/demo.mp4" controls="controls" style="max-width: 100%;">
+<video src="packages/demo01.mp4" controls="controls" style="max-width: 100%;">
+  Your browser does not support the video tag.
+</video>
+<video src="packages/demo02.mp4" controls="controls" style="max-width: 100%;">
   Your browser does not support the video tag.
 </video>
 
