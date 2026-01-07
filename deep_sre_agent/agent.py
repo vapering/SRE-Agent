@@ -104,17 +104,8 @@ INSTRUCTIONS = (
 
 base_url = os.getenv("OPENAI_COMPAT_BASE_URL")
 api_key = os.getenv("OPENAI_COMPAT_API_KEY")
-compat_model = os.getenv("OPENAI_COMPAT_MODEL", "gpt-4o-mini")
 
-if base_url and api_key:
-    model = ChatOpenAI(base_url=base_url, api_key=api_key, model=compat_model, temperature=0.0)
-else:
-    deepseek_key = os.getenv("DEEPSEEK_API_KEY")
-    if deepseek_key:
-        # model = ChatDeepSeek(base_url="https://api.deepseek.com", api_key=deepseek_key, model="deepseek-chat", temperature=0.0)
-        model = ChatOpenAI(base_url="https://www.dmxapi.cn/v1/", api_key=deepseek_key, model="gpt-5.2")
-    else:
-        model = init_chat_model(model="anthropic:claude-sonnet-4-5-20250929", temperature=0.0)
+model = ChatOpenAI(base_url=base_url, api_key=api_key, model="gpt-5.2")
 
 # Create the agent
 agent = create_deep_agent(

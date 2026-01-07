@@ -38,7 +38,7 @@ url="https://pypi.tuna.tsinghua.edu.cn/simple/"
 default=true
 
 [tool.setuptools]
-packages = ["log_agent","wiki_agent"]
+packages = []
 
 [tool.setuptools.package-data]
 "*" = ["py.typed"]

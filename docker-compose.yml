@@ -249,29 +249,6 @@ services:
     networks:
       - flashsale-network
 
-  oap:
-    image: apache/skywalking-oap-server:9.6.0
-    container_name: flashsale-oap
-    environment:
-      SW_STORAGE: h2
-    ports:
-      - "11800:11800"
-      - "12800:12800"
-    networks:
-      - flashsale-network
-
-  skywalking-ui:
-    image: apache/skywalking-ui:9.6.0
-    container_name: flashsale-skywalking-ui
-    depends_on:
-      - oap
-    environment:
-      SW_OAP_ADDRESS: http://oap:12800
-    ports:
-      - "8080:8080"
-    networks:
-      - flashsale-network
-
   prometheus-mcp:
     image: ghcr.io/pab1it0/prometheus-mcp-server:latest
     container_name: flashsale-prometheus-mcp
@@ -285,18 +262,6 @@ services:
       - "18090:18090"
     depends_on:
       - prometheus
-    networks:
-      - flashsale-network
-
-  skywalking-mcp:
-    # docker build -t skywalking-mcp:latest .
-    image: skywalking-mcp:latest
-    container_name: flashsale-skywalking-mcp
-    command: ["--sw-url", "http://oap:12800"]
-    ports:
-      - "18080:18080"
-    depends_on:
-      - oap
     networks:
       - flashsale-network
 
@@ -323,6 +288,49 @@ services:
       - "7080:8080"
     depends_on:
       - loki
+    networks:
+      - flashsale-network
+
+  deep-sre-agent:
+    build:
+      context: ./deep_sre_agent
+      dockerfile: Dockerfile
+    image: flashsale-deep-sre-agent:latest
+    container_name: flashsale-deep-sre-agent
+    working_dir: /app
+    volumes:
+      - ./deep_sre_agent/.env.dev:/app/.env:ro
+    environment:
+      PYTHONUNBUFFERED: "1"
+      PROM_MCP_STREAMABLE_URL: http://prometheus-mcp:18090/mcp
+      MYSQL_MCP_STREAMABLE_URL: http://dbhub:18081/mcp
+      LOKI_MCP_MODE: sse
+      LOKI_MCP_SSE_URL: http://loki-mcp:8080/sse
+    depends_on:
+      prometheus-mcp:
+        condition: service_started
+      dbhub:
+        condition: service_started
+      loki-mcp:
+        condition: service_started
+    ports:
+      - "2024:2024"
+    networks:
+      - flashsale-network
+
+  deep-agents-ui:
+    build:
+      context: ./deep-agents-ui-main
+      dockerfile: Dockerfile
+    image: flashsale-deep-agents-ui:latest
+    container_name: flashsale-deep-agents-ui
+    environment:
+      PORT: "3300"
+    ports:
+      - "3300:3300"
+    depends_on:
+      deep-sre-agent:
+        condition: service_started
     networks:
       - flashsale-network
 

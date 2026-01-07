@@ -1,336 +1,178 @@
-# ⚡ Flash Sale Mall - 秒杀商城系统
+# 🤖 Deep SRE Agent & Flash Sale Mall
 
-一个专为SRE团队设计的手机秒杀商城系统，用于测试故障检测、根因分析和系统恢复能力。
+[中文文档](README_CN.md)
 
-<video src="https://private-user-images.githubusercontent.com/5309375/532009283-f50c2787-af93-4d79-b103-cd99ef503c2d.mp4?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3Njc2MjgxOTYsIm5iZiI6MTc2NzYyNzg5NiwicGF0aCI6Ii81MzA5Mzc1LzUzMjAwOTI4My1mNTBjMjc4Ny1hZjkzLTRkNzktYjEwMy1jZDk5ZWY1MDNjMmQubXA0P1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQVZDT0RZTFNBNTNQUUs0WkElMkYyMDI2MDEwNSUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNjAxMDVUMTU0NDU2WiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9ZjhhODMyMjBlNTdjMjE4MGVhZTgyZjQ1NjE1ODhkZTlkMDIyMDU2YmE1NzFlNTlkMzdjODdiMWE1MGJiZWU4NiZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QifQ.IHHIATjRlNwEoVTapdDH8H4-leCKunYpaq6XxmDRBE4" data-canonical-src="https://private-user-images.githubusercontent.com/5309375/532009283-f50c2787-af93-4d79-b103-cd99ef503c2d.mp4?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3Njc2MjgxOTYsIm5iZiI6MTc2NzYyNzg5NiwicGF0aCI6Ii81MzA5Mzc1LzUzMjAwOTI4My1mNTBjMjc4Ny1hZjkzLTRkNzktYjEwMy1jZDk5ZWY1MDNjMmQubXA0P1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQVZDT0RZTFNBNTNQUUs0WkElMkYyMDI2MDEwNSUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNjAxMDVUMTU0NDU2WiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9ZjhhODMyMjBlNTdjMjE4MGVhZTgyZjQ1NjE1ODhkZTlkMDIyMDU2YmE1NzFlNTlkMzdjODdiMWE1MGJiZWU4NiZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QifQ.IHHIATjRlNwEoVTapdDH8H4-leCKunYpaq6XxmDRBE4" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px; min-height: 200px" draggable="true">
+**Deep SRE Agent** is a cutting-edge intelligent SRE (Site Reliability Engineering) experimental platform designed to explore the application of LLMs (Large Language Models) in the field of SRE.
 
-  </video>
-## 🎯 项目概述
+This project builds a complete microservices-based e-commerce system (**Flash Sale Mall**) and equips it with an intelligent operations agent (**Deep SRE Agent**) based on the [deepagents](https://github.com/langchain-ai/deepagents) framework.
 
-Flash Sale Mall 是一个高度简化的手机秒杀商城系统，支持高并发场景下的故障注入和监控分析。系统提供完整的用户认证、商品秒杀、订单管理和监控功能。
-
-## 🏗️ 技术架构
-
-### 前端技术栈
-- **React 18** + **TypeScript** - 现代化前端框架
-- **Vite** - 快速构建工具
-- **TailwindCSS** - 实用优先的CSS框架
-- **React Router** - 客户端路由管理
-- **Zustand** - 轻量级状态管理
-- **Lucide React** - 图标库
-
-### 后端技术栈（已迁移为Spring Boot）
-- **Spring Boot 3.3.x** + **Java 21** - 企业级后端框架
-- **Spring Security + JWT** - 认证授权
-- **Spring Data JPA/Hibernate** - ORM与数据访问
-- **MySQL 8.0** - 关系型数据库
-- **Redis 7.0** - 缓存与限流
-- **Apache Kafka** - 异步消息处理
-- **Micrometer + Prometheus** - 指标采集
-- **SkyWalking Java Agent** - 链路追踪
-
-### 监控和运维
-- **Prometheus** - 指标收集
-- **Grafana** - 可视化监控面板
-- **Docker** - 容器化部署
-
-## 🚀 快速开始
-
-### 环境要求
-- Docker 与 Docker Compose（后端容器化）
-- Node.js 18+（本地前端开发可选）
-
-### 1. 启动基础设施与监控
-```bash
-# 启动数据库、缓存、消息队列与监控
-docker compose up -d mysql redis zookeeper kafka prometheus grafana loki promtail oap skywalking-ui
-```
-
-### 2. 安装依赖
-```bash
-npm install
-```
-
-### 3. 启动后端服务（Spring Boot容器）
-```bash
-docker compose up -d backend
-docker compose logs -f backend
-```
-
-### 4. 启动前端服务
-```bash
-# 开发模式
-npm run dev
-
-# 构建生产版本
-npm run build
-```
-
-### 5. 访问应用
-- 前端应用: http://localhost:5173
-- 后端API: http://localhost:3001
-- Grafana监控: http://localhost:3000 (admin/admin123)
-- Prometheus: http://localhost:9090
-- SkyWalking UI: http://localhost:8080
-
-## 📋 核心功能
-
-### 用户系统
-- ✅ 用户登录/认证 (JWT)
-- ✅ 会话管理
-- ✅ 权限控制
-
-### 商品秒杀
-- ✅ 商品展示和搜索
-- ✅ 实时倒计时
-- ✅ 秒杀状态管理
-- ✅ 库存管理
-- ✅ 频率限制 (10秒3次)
-
-### 订单管理
-- ✅ 订单创建
-- ✅ 订单状态跟踪
-- ✅ 订单历史查询
-
-### 监控
-- ✅ 实时性能指标（Micrometer/Prometheus）
-- ✅ QPS、响应时间、错误率监控
-- ✅ 并发用户数统计
-- ✅ 系统健康检查
-- ✅ 链路追踪（SkyWalking）
-
-## 🔧 API接口
-
-### 认证接口
-- `POST /api/auth/login` - 用户登录
-- `POST /api/auth/logout` - 用户登出
-- `GET /api/auth/me` - 获取当前用户信息
-
-### 商品接口
-- `GET /api/products` - 获取商品列表
-- `GET /api/products/:id` - 获取商品详情
-
-### 秒杀接口
-- `POST /api/seckill` - 提交秒杀请求 (需要认证)
-
-### 订单接口
-- `GET /api/orders` - 获取用户订单 (需要认证)
-- `GET /api/orders/:id` - 获取订单详情 (需要认证)
-
-## 🎨 用户界面
-
-### 设计原则
-- **移动端优先** - 响应式设计
-- **红色主题** - 突出秒杀氛围 (#E53E3E)
-- **卡片式布局** - 清晰的信息层次
-- **实时交互** - 流畅的用户体验
-
-### 页面结构
-1. **登录页面** - 简洁的认证界面
-2. **秒杀首页** - 商品网格和倒计时
-3. **订单页面** - 订单管理和状态跟踪
-4. **监控面板** - 实时指标
-
-## 🧪 测试账户
-
-```
-普通用户:
-- 用户名: testuser
-- 密码: test123
-
-管理员:
-- 用户名: admin  
-- 密码: admin123
-```
-
-## 📊 监控指标
-
-### 性能指标
-- **QPS (Queries Per Second)** - 每秒查询数
-- **响应时间** - API响应延迟
-- **错误率** - 请求失败百分比
-- **并发用户数** - 同时在线用户数量
-
-### 系统状态
-- **数据库连接** - MySQL健康状态
-- **Redis缓存** - 缓存服务状态
-- **消息队列** - Kafka服务状态
-
-## 🔍 故障注入测试
-
-支持多种故障类型模拟：
-- **数据库连接池耗尽** - 测试数据库压力
-- **Kafka消息积压** - 测试消息队列处理能力
-- **缓存击穿** - 测试缓存失效场景
-- **API限流** - 测试限流机制
-- **服务超时** - 测试超时处理
-
-## 🛠️ 开发指南
-
-### 项目结构
-```
-FlashSaleMall/
-├── src/                    # 前端源代码
-│   ├── components/         # React组件
-│   ├── pages/             # 页面组件
-│   ├── stores/            # Zustand状态管理
-│   └── ...
-├── backend-spring/        # Spring Boot后端
-│   ├── src/main/java/     # 业务代码（Controller/Repository/Config）
-│   ├── src/main/resources # 配置（application.yml）
-│   ├── src/test/java/     # 测试用例
-│   └── Dockerfile         # 生产容器镜像（含SkyWalking Agent）
-├── docker-compose.yml    # Docker服务配置
-└── ...
-```
-
-### 常用开发与运维命令
-```bash
-# 前端开发
-npm install && npm run dev
-
-# 后端容器
-docker compose up -d backend
-docker compose logs -f backend
-
-# 基础设施与监控
-docker compose up -d mysql redis zookeeper kafka prometheus grafana loki promtail oap skywalking-ui
-
-# 关闭服务
-docker compose down
-```
-
-## 🔒 安全特性
-
-- **JWT认证** - Spring Security + JWT
-- **密码加密** - BCryptPasswordEncoder
-- **频率限制** - Redis计数器实现（10秒3次）
-- **输入验证** - 控制器层参数校验
-- **错误处理** - Spring 全局异常处理（统一响应格式）
-
-## 📈 性能优化
-
-- **Redis缓存** - 商品信息和库存缓存
-- **数据库连接池** - HikariCP 连接池
-- **异步处理** - Kafka异步消息
-- **前端优化** - 代码分割和懒加载
+The Agent can act like a human SRE engineer, proactively inspecting the system, analyzing logs, querying metrics, diagnosing databases, and even performing root cause analysis through natural language.
 
 ---
 
-# 🤖 Deep SRE Agent
+## 🎥 Demo
 
-Deep SRE Agent 是一个基于 LLM 和 MCP (Model Context Protocol) 构建的智能运维代理，旨在辅助 SRE 团队进行故障排查、根因分析和系统恢复。它能够通过自然语言与系统中的监控、日志、数据库等组件进行交互。
+<video src="packages/demo.mp4" controls="controls" style="max-width: 100%;">
+  Your browser does not support the video tag.
+</video>
 
-## � 核心架构
-
-Deep SRE Agent 采用 Orchestrator-Workers 模式，由主 Agent 协调多个专注于特定领域的 Sub-Agents：
-
-- **Wiki Agent**: 知识库专家，分析系统架构文档，提供故障排查思路。
-- **Log Agent**: 日志分析专家，通过 Loki MCP 查询和分析应用日志。
-- **Prometheus Agent**: 指标监控专家，通过 Prometheus MCP 查询 PromQL 并分析系统健康度。
-- **MySQL Agent**: 数据库专家，通过 DBHub/MySQL MCP 执行 SQL 查询，排查数据问题。
-
-## 🚀 快速开始 (SRE Agent)
-
-### 1. 环境准备
-
-SRE Agent 使用 Python 编写，推荐使用 [uv](https://docs.astral.sh/uv/) 进行包管理。
-
-```bash
-# 安装 uv
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# 进入 agent 目录
-cd deep_sre_agent
-
-# 安装依赖
-uv sync
-```
-
-### 2. 配置环境变量
-
-复制环境变量示例文件并配置 API Key：
-
-```bash
-cp .env.example .env.dev
-```
-
-你需要配置以下关键变量：
-- `ANTHROPIC_API_KEY`: 用于 Claude 模型 (或其他支持的 LLM)
-- `TAVILY_API_KEY`: 用于 Web 搜索（可选）
-- `LANGSMITH_API_KEY`: 用于 LangSmith 追踪（可选）
-- `DEEPSEEK_API_KEY`: 用于 DEEPSEEK_API_KEY 大模型
-
-### 3. 启动 MCP 服务
-
-确保 `docker-compose.yml` 中的 MCP 服务已启动（这些服务充当 Agent 与基础设施之间的桥梁）：
-
-```bash
-# 在项目根目录下运行，启动所有 MCP 适配器服务
-docker compose up -d prometheus-mcp skywalking-mcp dbhub loki-mcp
-```
-
-### 4. 运行 Agent
-
-你可以通过 Jupyter Notebook 交互式运行，或者启动 LangGraph Server。
-
-#### 方式 A: Jupyter Notebook (推荐用于调试/演示)
-
-```bash
-uv run jupyter notebook research_agent.ipynb
-```
-
-#### 方式 B: LangGraph Server
-
-```bash
-langgraph dev
-```
-
-## 🛠️ Agent 开发指南
-
-### Agent 项目结构
-
-```
-deep_sre_agent/
-├── agent.py              # 主 Agent 入口与编排逻辑
-├── log_agent/            # 日志分析子 Agent
-├── mysql_agent/          # 数据库子 Agent
-├── prometheus_agent/     # 监控指标子 Agent
-├── wiki_agent/           # 知识库子 Agent
-├── research_agent.ipynb  # 交互式运行笔记本
-├── pyproject.toml        # 依赖配置
-└── .env.dev              # 环境变量配置
-```
-
-### 添加新的 Tool/Agent
-
-1.  在 `deep_sre_agent/` 下创建新的 agent 目录。
-2.  定义 `mcp_client.py` 以连接外部 MCP 服务。
-3.  编写 `tools.py` 封装 MCP 调用。
-4.  在 `agent.py` 中注册新的 sub-agent。
+> If the video does not play, please check [packages/demo.mp4](packages/demo.mp4) directly.
 
 ---
 
-## 🤝 贡献指南
+## 🏗️ Overall Architecture
 
-1. Fork 项目
-2. 创建特性分支 (`git checkout -b feature/amazing-feature`)
-3. 提交更改 (`git commit -m 'Add some amazing feature'`)
-4. 推送到分支 (`git push origin feature/amazing-feature`)
-5. 创建 Pull Request
+The project adopts a layered architecture design, from bottom to top: Target Business System, Observability Infrastructure, MCP Adapter Layer, and Intelligent Agent Layer.
 
-## 📄 许可证
+```mermaid
+graph TD
+    subgraph "🤖 Intelligent Agent Layer"
+        UI[Deep Agents UI :3300] --> Agent[Deep SRE Agent :2024]
+        Agent --> |Orchestrate| Wiki[Wiki Agent]
+        Agent --> |Orchestrate| Log[Log Agent]
+        Agent --> |Orchestrate| Metric[Prometheus Agent]
+        Agent --> |Orchestrate| DB[MySQL Agent]
+    end
 
-本项目基于 MIT 协议开源 - 详情请参阅 [LICENSE](LICENSE) 文件。
+    subgraph "🔌 MCP Adapter Layer"
+        Wiki --> |SSE/HTTP| WikiMCP[DeepWiki MCP]
+        Log --> |SSE/HTTP| LokiMCP[Loki MCP :7080]
+        Metric --> |HTTP| PromMCP[Prometheus MCP :18090]
+        DB --> |HTTP| DBHub[DBHub/MySQL MCP :18081]
+        Agent --> |HTTP| SkyWalkingMCP[SkyWalking MCP :18080]
+    end
 
-## 🙏 致谢
+    subgraph "📊 Observability Infrastructure"
+        PromMCP --> Prometheus[Prometheus :9090]
+        LokiMCP --> Loki[Loki :3100]
+        SkyWalkingMCP --> OAP[SkyWalking OAP :12800]
+        Prometheus --> Grafana[Grafana :3000]
+        Promtail --> Loki
+        OAP --> SkyWalkingUI[SkyWalking UI :8080]
+    end
 
-- React 团队提供优秀的前端框架
-- Spring Boot 团队提供企业级后端框架
-- TailwindCSS 团队提供优雅的样式解决方案
-- LangChain / LangGraph 团队提供优秀的 Agent 框架
-- 所有为开源社区贡献的开发者们
+    subgraph "🛒 Target System (Flash Sale Mall)"
+        Frontend[Frontend :5173] --> Backend[Backend :3001]
+        Backend --> MySQL[MySQL :3306]
+        Backend --> Redis[Redis :6379]
+        Backend --> Kafka[Kafka :9092]
+        Backend -.-> |Logs| Promtail
+        Backend -.-> |Metrics| Prometheus
+        Backend -.-> |Traces| OAP
+    end
+```
+
+### Core Components
+
+1.  **Flash Sale Mall (Target System)**
+    *   A high-concurrency flash sale mall based on Spring Boot 3 + React 18.
+    *   Integrated full-link monitoring: Micrometer (Metrics), Logback (Logs), SkyWalking (Traces).
+    *   See: [README_flashMall.md](README_flashMall.md)
+
+2.  **Observability Stack**
+    *   **Prometheus**: Metric storage and querying.
+    *   **Loki**: Log aggregation and retrieval.
+    *   **SkyWalking**: Distributed tracing.
+    *   **Grafana**: Unified monitoring dashboard.
+
+3.  **MCP Layer (Model Context Protocol Layer)**
+    *   Acts as a standard bridge between LLM and infrastructure.
+    *   **Prometheus MCP**: Allows Agent to execute PromQL.
+    *   **Loki MCP**: Allows Agent to use LogQL to query logs.
+    *   **DBHub**: Allows Agent to execute SQL to query data.
+    *   **SkyWalking MCP**: Allows Agent to query topology and traces.
+
+4.  **Sub-Agent Layer**
+    *   **Prometheus Agent**: Focuses on metric query and analysis, generating PromQL and interpreting monitoring data.
+    *   **Log Agent**: Focuses on log retrieval, using LogQL to filter error stacks and exceptions.
+    *   **MySQL Agent**: Focuses on database diagnosis, executing SQL to query business data or slow queries.
+    *   **Wiki Agent**: Focuses on knowledge base retrieval, providing system architecture documents and SRE runbook support.
+
+5.  **Deep SRE Agent (Main Intelligent Agent)**
+    *   A Multi-Agent system orchestrator based on LangGraph.
+    *   Responsible for receiving user instructions, decomposing tasks, scheduling sub-agents, and summarizing reasoning results.
 
 ---
 
-**⚡ Flash Sale Mall - 让秒杀更简单，让测试更高效！**
+## 🚀 Quick Start
+
+### 1. Prerequisites
+*   **Docker & Docker Compose**: Core dependency, used to start all services.
+*   **API Key**: Requires OPENAI or other compatible LLM API Key.
+
+### 2. Configure Agent
+Copy the environment variable template and fill in your API Key:
+```bash
+cp deep_sre_agent/.env.example deep_sre_agent/.env.dev
+# Edit .env.dev and fill in keys, etc.
+```
+
+### 3. One-Click Start
+Use Docker Compose to bring up the entire environment (including Mall, Monitoring, MCP Services, Agent, and UI):
+
+```bash
+docker compose up -d --build
+```
+
+> **Note**: The first startup requires downloading multiple images and building the Agent environment, which may take tens of minutes.
+
+### 4. Access the System
+
+| Service Name | URL / Port | Description |
+| :--- | :--- | :--- |
+| **Deep Agents UI** | http://localhost:3300 | **Agent Entry**, chat with SRE Agent here |
+| **Flash Sale Mall** | http://localhost:5173 | Mall Frontend, test flash sales here |
+| **LangGraph API** | http://localhost:2024 | Agent Backend API (for UI) |
+| **Backend API** | http://localhost:3001 | Mall Backend API |
+| **Grafana** | http://localhost:3000 | Monitoring Dashboard (Account: admin / admin123) |
+| **Prometheus** | http://localhost:9090 | Native Metric Query Interface |
+
+---
+
+## 💻 Development Guide
+
+### SRE Agent Development
+Agent code is located in the `deep_sre_agent/` directory.
+*   **Architecture**: Uses LangGraph to orchestrate multi-agent collaboration.
+*   **Debugging**:
+    *   Recommended to use Jupyter Notebook (`research_agent.ipynb`) for interactive debugging.
+    *   Or run `langgraph dev` locally to start the API server.
+*   **Extension**: Create a new Agent directory under `deep_sre_agent/` and write `mcp_client.py` to connect to new MCP services.
+
+### Mall Business Development
+Business code is located in `backend-spring/` (Backend) and `src/` (Frontend).
+*   **Backend**: Spring Boot 3.3, Java 21.
+*   **Frontend**: React 18, Vite, TailwindCSS.
+*   **Local Run**: Refer to the development guide in [README_flashMall.md](README_flashMall.md).
+
+---
+
+## 🔌 Service Port Mapping
+
+| Container Service | Port | Usage |
+| :--- | :--- | :--- |
+| `deep-agents-ui` | **3300** | Agent Chat Interface (Next.js) |
+| `deep-sre-agent` | **2024** | Agent Core Logic (LangGraph API) |
+| `flashsale-frontend` | **5173** | Mall Frontend (Nginx/Vite) |
+| `flashsale-backend` | **3001** | Mall Backend (Spring Boot) |
+| `flashsale-grafana` | **3000** | Monitoring Visualization |
+| `flashsale-prometheus`| **9090** | Metric Storage |
+| `flashsale-loki` | **3100** | Log Storage |
+| `flashsale-mysql` | **3306** | Business Database |
+| `flashsale-redis` | **6379** | Cache & Rate Limiting |
+| `flashsale-kafka` | **9092** | Message Queue |
+| `prometheus-mcp` | **18090** | Prometheus MCP Adapter |
+| `dbhub` (MySQL MCP) | **18081** | SQL Execution Adapter |
+| `loki-mcp` | **7080** | Loki MCP Adapter |
+
+---
+
+## 🤝 Contribution & License
+
+Issues and PRs are welcome!
+
+*   **Contribution Guide**: See [CONTRIBUTING.md](CONTRIBUTING.md) (if available)
+*   **License**: [MIT License](LICENSE)
+
+---
+**Deep SRE Agent** - Make operations smarter, make systems more reliable.
