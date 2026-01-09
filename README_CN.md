@@ -42,16 +42,13 @@ graph TD
         Log --> |SSE/HTTP| LokiMCP[Loki MCP :7080]
         Metric --> |HTTP| PromMCP[Prometheus MCP :18090]
         DB --> |HTTP| DBHub[DBHub/MySQL MCP :18081]
-        Agent --> |HTTP| SkyWalkingMCP[SkyWalking MCP :18080]
     end
 
     subgraph "📊 Observability Infrastructure"
         PromMCP --> Prometheus[Prometheus :9090]
         LokiMCP --> Loki[Loki :3100]
-        SkyWalkingMCP --> OAP[SkyWalking OAP :12800]
         Prometheus --> Grafana[Grafana :3000]
         Promtail --> Loki
-        OAP --> SkyWalkingUI[SkyWalking UI :8080]
     end
 
     subgraph "🛒 Target System (Flash Sale Mall)"
@@ -69,13 +66,13 @@ graph TD
 
 1.  **Flash Sale Mall (被测系统)**
     *   基于 Spring Boot 3 + React 18 的高并发秒杀商城。
-    *   集成全链路监控：Micrometer (Metrics), Logback (Logs), SkyWalking (Traces)。
+    *   集成全链路监控：Micrometer (Metrics), Logback (Logs), tempo (Traces)。
     *   详见：[README_flashMall.md](README_flashMall.md)
 
 2.  **Observability Stack (可观测性栈)**
     *   **Prometheus**: 指标存储与查询。
     *   **Loki**: 日志聚合与检索。
-    *   **SkyWalking**: 分布式链路追踪。
+    *   **tempo**: 分布式链路追踪。
     *   **Grafana**: 统一监控大屏。
 
 3.  **MCP Layer (模型上下文协议层)**
@@ -83,7 +80,7 @@ graph TD
     *   **Prometheus MCP**: 允许 Agent 执行 PromQL。
     *   **Loki MCP**: 允许 Agent 使用 LogQL 查日志。
     *   **DBHub**: 允许 Agent 执行 SQL 查数据。
-    *   **SkyWalking MCP**: 允许 Agent 查询拓扑与链路。
+    *   **tempo MCP**: 允许 Agent 查询拓扑与链路。
 
 4.  **Sub-Agent Layer (子Agent 层)**
     *   **Prometheus Agent**: 专注于指标查询与分析，生成 PromQL 并解释监控数据。
@@ -174,7 +171,6 @@ Agent 代码位于 `deep_sre_agent/` 目录。
 
 欢迎提交 Issue 和 PR！
 
-*   **贡献指南**: 详见 [CONTRIBUTING.md](CONTRIBUTING.md) (如有)
 *   **许可证**: [MIT License](LICENSE)
 
 ---

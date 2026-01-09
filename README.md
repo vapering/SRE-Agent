@@ -43,16 +43,13 @@ graph TD
         Log --> |SSE/HTTP| LokiMCP[Loki MCP :7080]
         Metric --> |HTTP| PromMCP[Prometheus MCP :18090]
         DB --> |HTTP| DBHub[DBHub/MySQL MCP :18081]
-        Agent --> |HTTP| SkyWalkingMCP[SkyWalking MCP :18080]
     end
 
     subgraph "📊 Observability Infrastructure"
         PromMCP --> Prometheus[Prometheus :9090]
         LokiMCP --> Loki[Loki :3100]
-        SkyWalkingMCP --> OAP[SkyWalking OAP :12800]
         Prometheus --> Grafana[Grafana :3000]
         Promtail --> Loki
-        OAP --> SkyWalkingUI[SkyWalking UI :8080]
     end
 
     subgraph "🛒 Target System (Flash Sale Mall)"
@@ -70,13 +67,13 @@ graph TD
 
 1.  **Flash Sale Mall (Target System)**
     *   A high-concurrency flash sale mall based on Spring Boot 3 + React 18.
-    *   Integrated full-link monitoring: Micrometer (Metrics), Logback (Logs), SkyWalking (Traces).
+    *   Integrated full-link monitoring: Micrometer (Metrics), Logback (Logs), tempo (Traces).
     *   See: [README_flashMall.md](README_flashMall.md)
 
 2.  **Observability Stack**
     *   **Prometheus**: Metric storage and querying.
     *   **Loki**: Log aggregation and retrieval.
-    *   **SkyWalking**: Distributed tracing.
+    *   **tempo**: Distributed tracing.
     *   **Grafana**: Unified monitoring dashboard.
 
 3.  **MCP Layer (Model Context Protocol Layer)**
@@ -84,7 +81,7 @@ graph TD
     *   **Prometheus MCP**: Allows Agent to execute PromQL.
     *   **Loki MCP**: Allows Agent to use LogQL to query logs.
     *   **DBHub**: Allows Agent to execute SQL to query data.
-    *   **SkyWalking MCP**: Allows Agent to query topology and traces.
+    *   **tempo MCP**: Allows Agent to query topology and traces.
 
 4.  **Sub-Agent Layer**
     *   **Prometheus Agent**: Focuses on metric query and analysis, generating PromQL and interpreting monitoring data.
@@ -175,7 +172,6 @@ Business code is located in `backend-spring/` (Backend) and `src/` (Frontend).
 
 Issues and PRs are welcome!
 
-*   **Contribution Guide**: See [CONTRIBUTING.md](CONTRIBUTING.md) (if available)
 *   **License**: [MIT License](LICENSE)
 
 ---
